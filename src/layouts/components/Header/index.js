@@ -12,6 +12,7 @@ import clsx from 'clsx';
 import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -63,7 +64,10 @@ function Header() {
             </div>
           </Tippy>
         </div>
-        <div className={clsx(styles.actions)}></div>
+        <div className={clsx(styles.actions)}>
+          <Button text>Upload</Button>
+          <Button primary>Login</Button>
+        </div>
       </div>
     </header>
   );
