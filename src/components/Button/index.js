@@ -43,6 +43,7 @@ function Button({
     Comp = 'a';
   }
   const classes = clsx(styles.wrapper, {
+    [className]: className,
     [styles.disabled]: disabled,
     [styles.rounded]: rounded,
     [styles.outline]: outline,
@@ -51,10 +52,11 @@ function Button({
     [styles.small]: small,
     [styles.large]: large,
   });
-  console.log(styles[disabled]);
   return (
     <Comp className={classes} {...props}>
-      <span>{children}</span>
+      {leftIcon && <span className={styles.icon}>{leftIcon}</span>}
+      <span className={styles.title}>{children}</span>
+      {rightIcon && <span className={styles.icon}>{rightIcon}</span>}
     </Comp>
   );
 }

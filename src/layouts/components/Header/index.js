@@ -4,6 +4,10 @@ import {
   faXmarkCircle,
   faMagnifyingGlass,
   faSpinner,
+  faEllipsisVertical,
+  faGlobe,
+  faCircleQuestion,
+  faKeyboard,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
@@ -13,7 +17,23 @@ import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu';
 
+const SEEMORE_ITEMS = [
+  {
+    title: 'English',
+    icon: <FontAwesomeIcon icon={faGlobe} />,
+  },
+  {
+    title: 'Feedback and help',
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    to: '/feedback',
+  },
+  {
+    title: 'Keyboard shortcuts',
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+  },
+];
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
@@ -67,6 +87,11 @@ function Header() {
         <div className={clsx(styles.actions)}>
           <Button text>Upload</Button>
           <Button primary>Login</Button>
+          <Menu items={SEEMORE_ITEMS}>
+            <button className={styles['more-btn']}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>
