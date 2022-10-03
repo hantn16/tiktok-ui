@@ -1,11 +1,16 @@
 import React from 'react';
+import clsx from 'clsx';
+
 import Button from '~/components/Button';
 import styles from './Menu.module.scss';
 
 function MenuItem({ data, onClick }) {
+  const classes = clsx(styles['menu-item'], {
+    [styles.separate]: data.separate,
+  });
   return (
     <Button
-      className={styles['menu-item']}
+      className={classes}
       to={data.to}
       leftIcon={data.icon}
       onClick={onClick}
