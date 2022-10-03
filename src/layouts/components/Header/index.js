@@ -23,6 +23,21 @@ const SEEMORE_ITEMS = [
   {
     title: 'English',
     icon: <FontAwesomeIcon icon={faGlobe} />,
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     title: 'Feedback and help',
@@ -41,6 +56,17 @@ function Header() {
       setSearchResult([1, 2]);
     }, 0);
   }, []);
+
+  // Handle logic
+  const handleMenuChange = (menuItem) => {
+    switch (menuItem.type) {
+      case 'language':
+        // Handle change language
+        break;
+      default:
+    }
+  };
+
   return (
     <header className={clsx(styles.wrapper)}>
       <div className={clsx(styles.inner)}>
@@ -87,7 +113,7 @@ function Header() {
         <div className={clsx(styles.actions)}>
           <Button text>Upload</Button>
           <Button primary>Login</Button>
-          <Menu items={SEEMORE_ITEMS}>
+          <Menu items={SEEMORE_ITEMS} onChange={handleMenuChange}>
             <button className={styles['more-btn']}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
