@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faXmarkCircle,
-  faMagnifyingGlass,
   faSpinner,
   faEllipsisVertical,
   faGlobe,
   faCircleQuestion,
   faKeyboard,
-  faCloudUpload,
   faCoins,
   faGear,
   faSignOut,
   faUser,
+  faVideo,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -25,6 +25,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { InboxIcon, MessageIcon, SearchIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const SEEMORE_ITEMS = [
   {
@@ -88,6 +90,11 @@ function Header() {
       to: '/coin',
     },
     {
+      icon: <FontAwesomeIcon icon={faVideo} />,
+      title: 'LIVE studio',
+      to: '/studio',
+    },
+    {
       icon: <FontAwesomeIcon icon={faGear} />,
       title: 'Settings',
       to: '/settings',
@@ -139,23 +146,35 @@ function Header() {
                 icon={faSpinner}
               />
               <button className={clsx(styles['search-btn'])}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <SearchIcon />
               </button>
             </div>
           </HeadlessTippy>
         </div>
         <div className={clsx(styles.actions)}>
+          <Button
+            outline
+            leftIcon={<FontAwesomeIcon icon={faPlus} />}
+            className={styles['upload-btn']}
+          >
+            Upload
+          </Button>
           {currentUser ? (
             <>
-              <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+              <Tippy delay={[0, 50]} content="Messages" placement="bottom">
                 <button className={styles['action-btn']}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
+                <button className={styles['action-btn']}>
+                  <InboxIcon />
+                  <span className={clsx(styles['badge'])}>12</span>
                 </button>
               </Tippy>
             </>
           ) : (
             <>
-              <Button text>Upload</Button>
               <Button primary>Login</Button>
             </>
           )}
@@ -164,7 +183,7 @@ function Header() {
             onChange={handleMenuChange}
           >
             {currentUser ? (
-              <img
+              <Image
                 className={styles['user-avatar']}
                 src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/be22b8593ea95c8835d47f4b5309ec16~c5_100x100.jpeg?x-expires=1664956800&x-signature=RV3j8iS%2FYBjgCXh%2FkX5ibK0KyQs%3D"
                 alt="Nguyen Van A"

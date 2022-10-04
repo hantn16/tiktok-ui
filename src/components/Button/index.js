@@ -43,7 +43,6 @@ function Button({
     Comp = 'a';
   }
   const classes = clsx(styles.wrapper, {
-    [className]: className,
     [styles.disabled]: disabled,
     [styles.rounded]: rounded,
     [styles.outline]: outline,
@@ -51,6 +50,7 @@ function Button({
     [styles.text]: text,
     [styles.small]: small,
     [styles.large]: large,
+    [className]: className,
   });
   return (
     <Comp className={classes} {...props}>
