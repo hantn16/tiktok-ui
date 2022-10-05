@@ -4,6 +4,7 @@ import { faXmarkCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
+import { getSearchResult } from '~/services/searchService';
 import styles from './Search.module.scss';
 import clsx from 'clsx';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -24,20 +25,14 @@ function Search() {
       setSearchResult([]);
       return;
     }
-    setLoading(true);
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounced,
-      )}&type=less`,
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+
+    const fetchApi = async () => {
+      setLoading(true);
+      const result = await getSearchResult(debounced);
+      setSearchResult(result.data);
+      setLoading(false);
+    };
+    fetchApi();
   }, [debounced]);
   const handleClear = () => {
     setSearchValue('');
@@ -60,8 +55,6 @@ function Search() {
           </PopperWrapper>
         </div>
       )}
-      hideOnClick
-      trigger="click"
       onClickOutside={handleHideResult}
     >
       <div className={clsx(styles.search)}>
