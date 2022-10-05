@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmarkCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
+import { useDebounce } from '~/hooks';
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
@@ -17,15 +18,16 @@ function Search() {
   const [loading, setLoading] = useState(false);
 
   const inputRef = useRef();
+  const debounced = useDebounce(searchValue, 800);
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!debounced.trim()) {
       setSearchResult([]);
       return;
     }
     setLoading(true);
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        searchValue,
+        debounced,
       )}&type=less`,
     )
       .then((res) => res.json())
@@ -36,7 +38,7 @@ function Search() {
       .catch(() => {
         setLoading(false);
       });
-  }, [searchValue]);
+  }, [debounced]);
   const handleClear = () => {
     setSearchValue('');
     inputRef.current.focus();
@@ -58,6 +60,8 @@ function Search() {
           </PopperWrapper>
         </div>
       )}
+      hideOnClick
+      trigger="click"
       onClickOutside={handleHideResult}
     >
       <div className={clsx(styles.search)}>
