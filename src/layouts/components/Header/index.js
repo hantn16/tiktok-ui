@@ -22,6 +22,8 @@ import Menu from '~/components/Popper/Menu';
 import { InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import routeConfig from '~/configs/routeConfig';
+import { Link } from 'react-router-dom';
 
 const SEEMORE_ITEMS = [
   {
@@ -99,7 +101,9 @@ function Header() {
   return (
     <header className={clsx(styles.wrapper)}>
       <div className={clsx(styles.inner)}>
-        <img src={images.logo} alt="TikTok" />
+        <Link to={routeConfig.home} className={clsx(styles['logo-link'])}>
+          <img src={images.logo} alt="TikTok" />
+        </Link>
         <div>
           <Search />
         </div>
@@ -108,6 +112,7 @@ function Header() {
             outline
             leftIcon={<FontAwesomeIcon icon={faPlus} />}
             className={styles['upload-btn']}
+            to={routeConfig.upload}
           >
             Upload
           </Button>
