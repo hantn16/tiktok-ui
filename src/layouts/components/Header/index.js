@@ -132,7 +132,9 @@ function Header() {
             </>
           ) : (
             <>
-              <Button primary>Login</Button>
+              <Button to="/login" primary>
+                Login
+              </Button>
             </>
           )}
           <Menu
