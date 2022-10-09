@@ -43,7 +43,7 @@ function Search() {
   };
   const handleChange = (e) => {
     const searchValue = e.target.value;
-    if (!searchValue.startWith(' ')) {
+    if (!searchValue.startsWith(' ')) {
       setSearchValue(searchValue);
     }
   };

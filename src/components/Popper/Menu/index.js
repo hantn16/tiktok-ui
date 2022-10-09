@@ -54,7 +54,7 @@ function Menu({
                 }}
               ></Header>
             )}
-            {renderItems()}
+            <div className={clsx(styles['menu-body'])}>{renderItems()}</div>
           </PopperWrapper>
         </div>
       )}
