@@ -1,7 +1,1 @@
-import React from 'react';
-
-function Upload() {
-  return <h2>Upload Page</h2>;
-}
-
-export default Upload;
+export { default } from './Upload';
