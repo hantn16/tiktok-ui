@@ -1,7 +1,7 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '~/layouts/components/Header';
 
-function DefaultLayout({ children }) {
+function HeadOnly({ children }) {
   return (
     <div>
       <Header />
@@ -9,5 +9,8 @@ function DefaultLayout({ children }) {
     </div>
   );
 }
+HeadOnly.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-export default DefaultLayout;
+export default HeadOnly;
