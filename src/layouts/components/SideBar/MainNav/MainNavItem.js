@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
-import styles from './Menu.module.scss';
+import styles from './MainNav.module.scss';
 
-function MenuItem({ to, title, icon, activeIcon }) {
+function MainNavItem({ to, title, icon, activeIcon }) {
   return (
     <NavLink
       className={({ isActive }) =>
@@ -26,10 +26,10 @@ function MenuItem({ to, title, icon, activeIcon }) {
     </NavLink>
   );
 }
-MenuItem.propTypes = {
+MainNavItem.propTypes = {
   to: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   activeIcon: PropTypes.node.isRequired,
 };
-export default MenuItem;
+export default MainNavItem;

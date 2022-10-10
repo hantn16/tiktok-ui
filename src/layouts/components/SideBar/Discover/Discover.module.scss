@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px 8px 8px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 0;
+    height: 1px;
+    background: #f0f0f1;
+    -webkit-transform: scaleY(0.5);
+    -moz-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+.heading {
+  color: rgba(22, 24, 35, 0.75);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  padding-bottom: 16px;
+}

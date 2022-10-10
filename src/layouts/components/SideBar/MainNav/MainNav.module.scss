@@ -1,3 +1,7 @@
+.container {
+  margin-bottom: 8px;
+  padding: 0;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -30,7 +34,7 @@
 }
 
 .title {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .icon,
