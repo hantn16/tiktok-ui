@@ -84,8 +84,8 @@ function Sidebar() {
       </div>
       <AccountMenu title="Suggested accounts" items={accounts} />
       <AccountMenu title="Following accounts" items={[]} />
-      <Discover />
-      <Footer />
+      <Discover>Test</Discover>
+      <Footer>Test Footer</Footer>
     </aside>
   );
 }
